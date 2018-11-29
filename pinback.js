@@ -10,7 +10,7 @@
     , timer;
 
   // make sure user is logged in and on profile page
-  if (location.hostname.match(/pinterest.[a-z.]{2,5}$/i) && document.querySelector('.profileBoardsFeed')) {
+  if (location.hostname.match(/pinterest.[a-z.]{2,5}$/i)) {
     // already on profile page
     start();
   } else {
@@ -63,7 +63,7 @@
     option.dataset.name = 'all public pins';
     select.add(option);
 
-    Array.prototype.forEach.call(document.querySelectorAll('.cardWrapper a'), function(el, i) {
+    Array.prototype.forEach.call(document.querySelectorAll('.UserProfileContent a'), function(el, i) {
       var name = el.innerText.trim().split('\n')[0]; // first line of text
       var option = document.createElement('option');
       option.text = name;
@@ -78,7 +78,7 @@
       var name = selected.dataset.name;
 
       if (select.selectedIndex == 0) {
-        document.querySelectorAll('.tabItem')[1].click()
+        document.querySelectorAll('[role="tab"]')[1].click()
       } else {
         var link = document.querySelector('a[href="'+selected.value+'"]');
         link.href = selected.value+'?'+Date.now();
